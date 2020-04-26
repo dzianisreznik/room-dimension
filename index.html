@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin-top: -100px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            height: 100%;
+        }
+
+        .entry {
+            display: flex;
+            width: 700px;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .entry div {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .entry div p {
+            /* border-radius: 50%; */
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 800;
+            background-color: #3CBC8D;
+        }
+
+        .dims {
+            display: flex;
+
+        }
+        .dims p {
+            margin-left: 20px;
+            padding: 10px;
+            background-color: #3CBC8D;
+            color: white;
+            }
+        #calc {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            }
+
+            input {border: none;
+  border-bottom:  3px solid #999;
+            }
+    </style>
+</head>
+<body>
+    
+    <div class="entry">
+        <div>
+            <p>a</p>
+            <input type="number" id="a">
+        </div>
+        <div>
+            <p>b</p>
+            <input type="number" id="b">
+        </div>
+        <div>
+            <p>S</p>
+            <input type="number" id="s">
+        </div>
+
+        
+    </div>
+
+
+    <button id="calc">Calculate</button>
+
+    <div class="dims">
+        <p>Length: <span id='l'></span> m</p>
+        <p>Width: <span id='w'></span> m</p>
+    </div>
+
+    <script>
+        const aEl = document.getElementById('a');
+        const bEl = document.getElementById('b');
+        const sEl = document.getElementById('s');
+        const lEl = document.getElementById('l');
+        const wEl = document.getElementById('w');
+        const button = document.getElementById('calc');
+
+
+        button.addEventListener('click', () => {
+            const [l, w] = getDims(aEl.value, bEl.value, sEl.value);
+            lEl.innerText = l.toFixed(2);
+            wEl.innerText = w.toFixed(2);
+        });
+
+        function getDims(a,b,s) {
+            const x = Math.sqrt(s/(a * b));
+            return [a*x, b*x];
+        }
+    </script>
+</body>
+</html>
